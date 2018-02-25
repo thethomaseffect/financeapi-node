@@ -6,6 +6,7 @@ const paymentsSchema = new Schema({
   },
   id: {
     type: String,
+    required: true,
     index: true,
     unique: true
   },
@@ -29,7 +30,7 @@ const paymentsSchema = new Schema({
 })
 
 paymentsSchema.methods = {
-  view (full) {
+  view () {
     const view = {
       // simple view
       type: this.type,
@@ -39,10 +40,7 @@ paymentsSchema.methods = {
       attributes: this.attributes
     }
 
-    return full ? {
-      ...view
-      // add properties for a full view
-    } : view
+    return view
   }
 }
 

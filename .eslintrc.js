@@ -1,4 +1,5 @@
 module.exports = {
+  "esversion": 7,
   "parserOptions": {
     "ecmaVersion": 7,
     "ecmaFeatures": {
