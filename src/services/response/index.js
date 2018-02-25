@@ -28,13 +28,17 @@ export const notFound = (req, res) => (entity) => {
   if (entity) {
     return entity
   }
-  res.status(404).end()
+  res.status(404).json({
+    error: 'Not found'
+  }).end()
   return null
 }
 
 export const alreadyExists = (req, res) => (entity) => {
   if (entity) {
-    res.status(409).end()
+    res.status(409).json({
+      error: 'A payment with that `id` value already exists'
+    }).end()
     return entity
   }
   return null

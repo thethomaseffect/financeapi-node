@@ -6,7 +6,6 @@ const paymentsSchema = new Schema({
   },
   id: {
     type: String,
-    required: true,
     index: true,
     unique: true
   },
