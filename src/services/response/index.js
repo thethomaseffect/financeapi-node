@@ -33,7 +33,6 @@ export const notFound = (req, res) => (entity) => {
 }
 
 export const alreadyExists = (req, res) => (entity) => {
-  console.log(entity);
   if (entity) {
     res.status(409).end()
     return entity

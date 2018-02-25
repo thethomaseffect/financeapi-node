@@ -1,6 +1,12 @@
 import { success, notFound, alreadyExists } from '../../services/response/'
 import { Payments } from '.'
 
+function addIDToBody (body, id) {
+  return Object.assign(body, {
+    id
+  })
+}
+
 export const create = (req, res, next) =>
   Payments.findOne({id: req.bodymen.body.id})
     .then(alreadyExists(req, res))
@@ -22,13 +28,15 @@ export const show = (req, res, next) =>
     .then(success(req, res))
     .catch(next)
 
-export const update = (req, res, next) =>
-  Payments.findOne({id: req.params.id})
+export const update = (req, res, next) => {
+  const fullBody = addIDToBody(req.bodymen.body, req.params.id)
+  return Payments.findOne({id: req.params.id})
     .then(notFound(req, res))
-    .then((payments) => payments ? Object.assign(payments, req.bodymen.body).save() : null)
+    .then((payments) => payments ? Object.assign(payments, fullBody).save() : null)
     .then((payments) => payments ? payments.view(true) : null)
     .then(success(req, res))
     .catch(next)
+}
 
 export const destroy = (req, res, next) =>
   Payments.findOne({id: req.params.id})

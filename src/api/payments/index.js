@@ -4,7 +4,6 @@ import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy, destroyAll } from './controller'
 import Payments, { schema } from './model'
 
-
 const router = new Router()
 const { type, id, version, organisation_id, attributes } = schema.tree
 
