@@ -1,0 +1,1584 @@
+{
+	"info": {
+		"name": "Finance API Test Suite",
+		"_postman_id": "c2af69a8-7f81-4a98-af56-277b94743d8c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"description": "",
+			"item": [
+				{
+					"name": "Returns empty data list when no payments added",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e56159dc-b70e-4909-9d59-a00cab44c419",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "a677777f-785c-487c-acd2-bd18b80729b3",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Data list is empty when no payments\", function () {",
+									"    const res = pm.response.json();",
+									"    pm.expect(res.data.length).to.equal(0);",
+									"    pm.expect(pm.response.code).to.equal(200)",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "d50b0d7c-9fed-48e4-be89-4c8e3d4f5e09",
+							"name": "Get all Payments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:07:07 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5af-RUBiDxht37XyOEvUpsqIAOeD3x0\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":[{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"}],\"links\":{\"self\":\"http://localhost:9000/v1/payments\"}}"
+						}
+					]
+				},
+				{
+					"name": "Returns all payments added",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ecbe1ece-ec53-43f2-b3fb-250e617468ee",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\") })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "93b19e08-84c2-4f13-ab2c-923df8f07a4c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Returns all Payments added\", function () {",
+									"    const res = pm.response.json();",
+									"    pm.expect(res.data.length).to.equal(1);",
+									"    pm.expect(pm.response.code).to.equal(200)",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "b5cafdf2-435b-499a-a1c0-b537b7ec6ce4",
+							"name": "Get all Payments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:07:07 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5af-RUBiDxht37XyOEvUpsqIAOeD3x0\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":[{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"}],\"links\":{\"self\":\"http://localhost:9000/v1/payments\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GetOne",
+			"description": "",
+			"item": [
+				{
+					"name": "Returns 404 when Payment does not exist",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b71e1e22-2951-4cee-834a-e137ff28e209",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "09a5ec3d-2732-4a96-a0f7-bd1af00a6693",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Returns 404 when Payment does not exist\", function () {",
+									"    pm.expect(pm.response.code).to.equal(404)",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments/{{PAYMENT_ID}}",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments",
+								"{{PAYMENT_ID}}"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "7557e45e-36b8-4f05-96f5-e6b6ee7788a4",
+							"name": "Get a single Payment",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments/{{PAYMENT_ID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments",
+										"{{PAYMENT_ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:06:51 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d2-ql0hI3vZmoMTvE14XMrEtgh1AGA\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments/4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\"}}"
+						}
+					]
+				},
+				{
+					"name": "Returns existing Payment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5f67af9b-4045-441d-ba08-b0016c329a5f",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\") })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "53f1b776-9f60-4aa4-a16d-9176faed6ce5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Returns existing Payment\", function () {",
+									"    const res = pm.response.json();",
+									"    pm.expect(res.data.id).to.equal(pm.environment.get(\"PAYMENT_ID\"));",
+									"    pm.expect(pm.response.code).to.equal(200)",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments/{{PAYMENT_ID}}",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments",
+								"{{PAYMENT_ID}}"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "d9494a85-d661-4639-8b9c-189d7fa3eb2c",
+							"name": "Get a single Payment",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments/{{PAYMENT_ID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments",
+										"{{PAYMENT_ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:06:51 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d2-ql0hI3vZmoMTvE14XMrEtgh1AGA\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments/4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CreateNew",
+			"description": "",
+			"item": [
+				{
+					"name": "Create a new Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25d3d44f-31c7-4759-b5ca-72fc080d5c18",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Creates a new payment matching expected structure\", function () {",
+									"    const res = pm.response.json();",
+									"    pm.expect(res.data.id).to.equal(pm.environment.get(\"PAYMENT_ID\"));",
+									"    pm.expect(pm.response.code).to.equal(201)",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "03e9f2f6-4937-4766-a9bb-7bbf92337924",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n      \"type\": \"Payment\",\n      \"id\": \"{{PAYMENT_ID}}\",\n      \"version\": 0,\n      \"organisation_id\": \"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\",\n      \"attributes\": {\n        \"amount\": \"100.21\",\n        \"beneficiary_party\": {\n          \"account_name\": \"W Owens\",\n          \"account_number\": \"31926819\",\n          \"account_number_code\": \"BBAN\",\n          \"account_type\": 0,\n          \"address\": \"1 The Beneficiary Localtown SE2\",\n          \"bank_id\": \"403000\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Wilfred Jeremiah Owens\"\n        },\n        \"charges_information\": {\n          \"bearer_code\": \"SHAR\",\n          \"sender_charges\": [\n            {\n              \"amount\": \"5.00\",\n              \"currency\": \"GBP\"\n            },\n            {\n              \"amount\": \"10.00\",\n              \"currency\": \"USD\"\n            }\n          ],\n          \"receiver_charges_amount\": \"1.00\",\n          \"receiver_charges_currency\": \"USD\"\n        },\n        \"currency\": \"GBP\",\n        \"debtor_party\": {\n          \"account_name\": \"EJ Brown Black\",\n          \"account_number\": \"GB29XABC10161234567801\",\n          \"account_number_code\": \"IBAN\",\n          \"address\": \"10 Debtor Crescent Sourcetown NE1\",\n          \"bank_id\": \"203301\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Emelia Jane Brown\"\n        },\n        \"end_to_end_reference\": \"Wil piano Jan\",\n        \"fx\": {\n          \"contract_reference\": \"FX123\",\n          \"exchange_rate\": \"2.00000\",\n          \"original_amount\": \"200.42\",\n          \"original_currency\": \"USD\"\n        },\n        \"numeric_reference\": \"1002001\",\n        \"payment_id\": \"123456789012345678\",\n        \"payment_purpose\": \"Paying for goods/services\",\n        \"payment_scheme\": \"FPS\",\n        \"payment_type\": \"Credit\",\n        \"processing_date\": \"2017-01-18\",\n        \"reference\": \"Payment for Em's piano lessons\",\n        \"scheme_payment_sub_type\": \"InternetBanking\",\n        \"scheme_payment_type\": \"ImmediatePayment\",\n        \"sponsor_party\": {\n          \"account_number\": \"56781234\",\n          \"bank_id\": \"123123\",\n          \"bank_id_code\": \"GBDSC\"\n        }\n      }\n    }"
+						},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments"
+							]
+						},
+						"description": "Add a new Payment"
+					},
+					"response": [
+						{
+							"id": "dbe241a3-d32c-4a62-a5b5-30e87d502b75",
+							"name": "Create a new Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n      \"type\": \"Payment\",\n      \"id\": \"{{PAYMENT_ID}}\",\n      \"version\": 0,\n      \"organisation_id\": \"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\",\n      \"attributes\": {\n        \"amount\": \"100.21\",\n        \"beneficiary_party\": {\n          \"account_name\": \"W Owens\",\n          \"account_number\": \"31926819\",\n          \"account_number_code\": \"BBAN\",\n          \"account_type\": 0,\n          \"address\": \"1 The Beneficiary Localtown SE2\",\n          \"bank_id\": \"403000\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Wilfred Jeremiah Owens\"\n        },\n        \"charges_information\": {\n          \"bearer_code\": \"SHAR\",\n          \"sender_charges\": [\n            {\n              \"amount\": \"5.00\",\n              \"currency\": \"GBP\"\n            },\n            {\n              \"amount\": \"10.00\",\n              \"currency\": \"USD\"\n            }\n          ],\n          \"receiver_charges_amount\": \"1.00\",\n          \"receiver_charges_currency\": \"USD\"\n        },\n        \"currency\": \"GBP\",\n        \"debtor_party\": {\n          \"account_name\": \"EJ Brown Black\",\n          \"account_number\": \"GB29XABC10161234567801\",\n          \"account_number_code\": \"IBAN\",\n          \"address\": \"10 Debtor Crescent Sourcetown NE1\",\n          \"bank_id\": \"203301\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Emelia Jane Brown\"\n        },\n        \"end_to_end_reference\": \"Wil piano Jan\",\n        \"fx\": {\n          \"contract_reference\": \"FX123\",\n          \"exchange_rate\": \"2.00000\",\n          \"original_amount\": \"200.42\",\n          \"original_currency\": \"USD\"\n        },\n        \"numeric_reference\": \"1002001\",\n        \"payment_id\": \"123456789012345678\",\n        \"payment_purpose\": \"Paying for goods/services\",\n        \"payment_scheme\": \"FPS\",\n        \"payment_type\": \"Credit\",\n        \"processing_date\": \"2017-01-18\",\n        \"reference\": \"Payment for Em's piano lessons\",\n        \"scheme_payment_sub_type\": \"InternetBanking\",\n        \"scheme_payment_type\": \"ImmediatePayment\",\n        \"sponsor_party\": {\n          \"account_number\": \"56781234\",\n          \"bank_id\": \"123123\",\n          \"bank_id_code\": \"GBDSC\"\n        }\n      }\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:03:16 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b1-RAzpjYKSVUwd9BIUXzht/TKmZU8\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"bearer_code\":\"SHAR\",\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"Payment\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":0,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments\"}}"
+						}
+					]
+				},
+				{
+					"name": "Does not create new Payment if ID already exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "569b3ced-3c57-4be6-8743-375aa6b75813",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Does not create a request if a duplicate ID is provided\", function () {",
+									"    pm.expect(pm.response.code).to.equal(409)",
+									"});"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "295c0470-2994-4b04-93a1-6470a8bbfcf6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\"), type: \"foo\" })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n      \"type\": \"Payment\",\n      \"id\": \"{{PAYMENT_ID}}\",\n      \"version\": 0,\n      \"organisation_id\": \"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\",\n      \"attributes\": {\n        \"amount\": \"100.21\",\n        \"beneficiary_party\": {\n          \"account_name\": \"W Owens\",\n          \"account_number\": \"31926819\",\n          \"account_number_code\": \"BBAN\",\n          \"account_type\": 0,\n          \"address\": \"1 The Beneficiary Localtown SE2\",\n          \"bank_id\": \"403000\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Wilfred Jeremiah Owens\"\n        },\n        \"charges_information\": {\n          \"bearer_code\": \"SHAR\",\n          \"sender_charges\": [\n            {\n              \"amount\": \"5.00\",\n              \"currency\": \"GBP\"\n            },\n            {\n              \"amount\": \"10.00\",\n              \"currency\": \"USD\"\n            }\n          ],\n          \"receiver_charges_amount\": \"1.00\",\n          \"receiver_charges_currency\": \"USD\"\n        },\n        \"currency\": \"GBP\",\n        \"debtor_party\": {\n          \"account_name\": \"EJ Brown Black\",\n          \"account_number\": \"GB29XABC10161234567801\",\n          \"account_number_code\": \"IBAN\",\n          \"address\": \"10 Debtor Crescent Sourcetown NE1\",\n          \"bank_id\": \"203301\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Emelia Jane Brown\"\n        },\n        \"end_to_end_reference\": \"Wil piano Jan\",\n        \"fx\": {\n          \"contract_reference\": \"FX123\",\n          \"exchange_rate\": \"2.00000\",\n          \"original_amount\": \"200.42\",\n          \"original_currency\": \"USD\"\n        },\n        \"numeric_reference\": \"1002001\",\n        \"payment_id\": \"123456789012345678\",\n        \"payment_purpose\": \"Paying for goods/services\",\n        \"payment_scheme\": \"FPS\",\n        \"payment_type\": \"Credit\",\n        \"processing_date\": \"2017-01-18\",\n        \"reference\": \"Payment for Em's piano lessons\",\n        \"scheme_payment_sub_type\": \"InternetBanking\",\n        \"scheme_payment_type\": \"ImmediatePayment\",\n        \"sponsor_party\": {\n          \"account_number\": \"56781234\",\n          \"bank_id\": \"123123\",\n          \"bank_id_code\": \"GBDSC\"\n        }\n      }\n    }"
+						},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments"
+							]
+						},
+						"description": "Add a new Payment"
+					},
+					"response": [
+						{
+							"id": "168f8e40-dbf3-4152-9c48-c795db5ad7b6",
+							"name": "Create a new Payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "    {\n      \"type\": \"Payment\",\n      \"id\": \"{{PAYMENT_ID}}\",\n      \"version\": 0,\n      \"organisation_id\": \"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\",\n      \"attributes\": {\n        \"amount\": \"100.21\",\n        \"beneficiary_party\": {\n          \"account_name\": \"W Owens\",\n          \"account_number\": \"31926819\",\n          \"account_number_code\": \"BBAN\",\n          \"account_type\": 0,\n          \"address\": \"1 The Beneficiary Localtown SE2\",\n          \"bank_id\": \"403000\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Wilfred Jeremiah Owens\"\n        },\n        \"charges_information\": {\n          \"bearer_code\": \"SHAR\",\n          \"sender_charges\": [\n            {\n              \"amount\": \"5.00\",\n              \"currency\": \"GBP\"\n            },\n            {\n              \"amount\": \"10.00\",\n              \"currency\": \"USD\"\n            }\n          ],\n          \"receiver_charges_amount\": \"1.00\",\n          \"receiver_charges_currency\": \"USD\"\n        },\n        \"currency\": \"GBP\",\n        \"debtor_party\": {\n          \"account_name\": \"EJ Brown Black\",\n          \"account_number\": \"GB29XABC10161234567801\",\n          \"account_number_code\": \"IBAN\",\n          \"address\": \"10 Debtor Crescent Sourcetown NE1\",\n          \"bank_id\": \"203301\",\n          \"bank_id_code\": \"GBDSC\",\n          \"name\": \"Emelia Jane Brown\"\n        },\n        \"end_to_end_reference\": \"Wil piano Jan\",\n        \"fx\": {\n          \"contract_reference\": \"FX123\",\n          \"exchange_rate\": \"2.00000\",\n          \"original_amount\": \"200.42\",\n          \"original_currency\": \"USD\"\n        },\n        \"numeric_reference\": \"1002001\",\n        \"payment_id\": \"123456789012345678\",\n        \"payment_purpose\": \"Paying for goods/services\",\n        \"payment_scheme\": \"FPS\",\n        \"payment_type\": \"Credit\",\n        \"processing_date\": \"2017-01-18\",\n        \"reference\": \"Payment for Em's piano lessons\",\n        \"scheme_payment_sub_type\": \"InternetBanking\",\n        \"scheme_payment_type\": \"ImmediatePayment\",\n        \"sponsor_party\": {\n          \"account_number\": \"56781234\",\n          \"bank_id\": \"123123\",\n          \"bank_id_code\": \"GBDSC\"\n        }\n      }\n    }"
+								},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:03:16 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b1-RAzpjYKSVUwd9BIUXzht/TKmZU8\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"bearer_code\":\"SHAR\",\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"Payment\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":0,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UpdateOne",
+			"description": "",
+			"item": [
+				{
+					"name": "Update a single Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c4fc711-8bc7-4198-8c97-baf35dbb8f2b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Updates a Payment\", function () {",
+									"    const res = pm.response.json();",
+									"    pm.expect(res.data.type).to.equal(\"bar\");",
+									"    pm.expect(pm.response.code).to.equal(200)",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "07faf4df-69e1-429f-bdb4-cd6f479d4960",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\"), type: \"foo\" })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"type\": \"bar\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments/{{PAYMENT_ID}}",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments",
+								"{{PAYMENT_ID}}"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "3667f9b5-3735-4e91-8c4f-e3e053799b3c",
+							"name": "Update a single Payment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"version\": 4,\n   \"type\": \"sdf\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments/{{PAYMENT_ID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments",
+										"{{PAYMENT_ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:03:41 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d2-ql0hI3vZmoMTvE14XMrEtgh1AGA\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments/4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\"}}"
+						}
+					]
+				},
+				{
+					"name": "Returns 404 when Payment does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "058b4d87-0cfe-44fd-b64d-6f90b13c55f7",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Returns 404 when Payment does not exist\", function () {",
+									"    pm.expect(pm.response.code).to.equal(404)",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"version\": 4,\n   \"type\": \"sdf\"\n}"
+						},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments/{{PAYMENT_ID}}",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments",
+								"{{PAYMENT_ID}}"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "070d25de-65f8-47e5-9060-1d3b5e540956",
+							"name": "Update a single Payment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"version\": 4,\n   \"type\": \"sdf\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments/{{PAYMENT_ID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments",
+										"{{PAYMENT_ID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip",
+									"name": "Content-Encoding",
+									"description": "The type of encoding used on the data."
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:03:41 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d2-ql0hI3vZmoMTvE14XMrEtgh1AGA\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding",
+									"name": "Vary",
+									"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": "{\"data\":{\"attributes\":{\"beneficiary_party\":{\"account_name\":\"W Owens\",\"account_number\":\"31926819\",\"account_number_code\":\"BBAN\",\"account_type\":0,\"address\":\"1 The Beneficiary Localtown SE2\",\"bank_id\":\"403000\",\"name\":\"Wilfred Jeremiah Owens\"},\"charges_information\":{\"sender_charges\":[{\"amount\":\"5.00\",\"currency\":\"GBP\",\"_id\":\"5a932494f686fc2ed4a22d10\"},{\"amount\":\"10.00\",\"currency\":\"USD\",\"_id\":\"5a932494f686fc2ed4a22d0f\"}],\"bearer_code\":\"SHAR\",\"receiver_charges_amount\":\"1.00\",\"receiver_charges_currency\":\"USD\"},\"debtor_party\":{\"account_name\":\"EJ Brown Black\",\"account_number\":\"GB29XABC10161234567801\",\"account_number_code\":\"IBAN\",\"address\":\"10 Debtor Crescent Sourcetown NE1\",\"bank_id\":\"203301\",\"name\":\"Emelia Jane Brown\"},\"fx\":{\"contract_reference\":\"FX123\",\"exchange_rate\":\"2.00000\",\"original_amount\":\"200.42\",\"original_currency\":\"USD\"},\"sponsor_party\":{\"account_number\":\"56781234\",\"bank_id_code\":\"GBDSC\"},\"amount\":\"100.21\",\"currency\":\"GBP\",\"end_to_end_reference\":\"Wil piano Jan\",\"numeric_reference\":\"1002001\",\"payment_id\":\"123456789012345678\",\"payment_purpose\":\"Paying for goods/services\",\"payment_type\":\"Credit\",\"processing_date\":\"2017-01-18\",\"reference\":\"Payment for Em's piano lessons\",\"scheme_payment_sub_type\":\"InternetBanking\",\"scheme_payment_type\":\"ImmediatePayment\"},\"type\":\"sdf\",\"id\":\"4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\",\"version\":4,\"organisation_id\":\"743d5b63-8e6f-432e-a8fa-c5d8d2ee5fcb\"},\"links\":{\"self\":\"http://localhost:9000/v1/payments/4ee3a8d8-ca7b-4290-a52c-dd5b6165ec43\"}}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"description": "",
+			"item": [
+				{
+					"name": "Delete a single Payment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "27552cb9-e402-4991-84e5-49d3a4dec2ed",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Delete a payment successfully\", function () {",
+									"    pm.sendRequest({",
+									"        url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"        method: \"GET\"",
+									"        }, function (err, response) {",
+									"        if (err) {",
+									"            console.error(err);",
+									"        }",
+									"        const res = response.json();",
+									"        pm.expect(res.data.length).to.equal(0);",
+									"        pm.expect(response.code).to.equal(200)",
+									"    });",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4be80bf9-868e-4b0d-9d72-d10054925ca5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\"), type: \"foo\" })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments/{{PAYMENT_ID}}",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments",
+								"{{PAYMENT_ID}}"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "8ef91ae3-531c-4351-9382-cb7c81c51af1",
+							"name": "Delete a single Payment",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments/{{PAYMENT_ID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments",
+										"{{PAYMENT_ID}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 19:55:39 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d2-969heA+R+72bf4IylpQzE9j8QuU\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete all Payments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c0a4289-9026-4c71-8aaa-f0b42de90e96",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Delete all payments successfully\", function () {",
+									"    pm.sendRequest({",
+									"        url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"        method: \"GET\"",
+									"        }, function (err, response) {",
+									"        if (err) {",
+									"            console.error(err);",
+									"        }",
+									"        const res = response.json();",
+									"        pm.expect(res.data.length).to.equal(0);",
+									"        pm.expect(response.code).to.equal(200)",
+									"    });",
+									"});",
+									""
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cea76054-dda5-4cfe-926a-75961c317b8b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.sendRequest({",
+									"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+									"    method: \"POST\",",
+									"    header: 'Content-Type:application/json',",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ id: pm.environment.get(\"PAYMENT_ID\"), type: \"foo\" })",
+									"    }",
+									"    }, function (err, response) {",
+									"    if (err) {",
+									"        console.error(err);",
+									"    }",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{HOST_URL}}v1/payments",
+							"host": [
+								"{{HOST_URL}}v1"
+							],
+							"path": [
+								"payments"
+							]
+						},
+						"description": "Get all payments"
+					},
+					"response": [
+						{
+							"id": "64859a08-7b7b-4f86-a937-bf215d65b27d",
+							"name": "Delete all Payments",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:9000/v1/payments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9000",
+									"path": [
+										"v1",
+										"payments"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*",
+									"name": "Access-Control-Allow-Origin",
+									"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 25 Feb 2018 21:03:13 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4c-uC8SKZ4UMFbeWPIcZL4/vvcH9gQ\"",
+									"name": "ETag",
+									"description": "An identifier for a specific version of a resource, often a message digest"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Tue Jan 19 2038 03:14:07 GMT+0000 (GMT)",
+									"httpOnly": true,
+									"domain": "localhost",
+									"path": "/",
+									"secure": false,
+									"value": "2D3C1A1C7C2D1CF905792C441CE408AD",
+									"key": "JSESSIONID"
+								}
+							],
+							"body": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6dd82283-da1d-438d-a809-a76135ab3b93",
+				"type": "text/javascript",
+				"exec": [
+					"pm.sendRequest({",
+					"    url: pm.environment.get(\"HOST_URL\") + \"v1/payments\",",
+					"    method: \"DELETE\"",
+					"    }, function (err, response) {",
+					"    if (err) {",
+					"        console.error(err);",
+					"    }",
+					"});",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "49953b4d-9fc4-4add-a8b5-cf6c7d6b90bd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
