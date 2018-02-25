@@ -2,8 +2,8 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { create, index, show, update, destroy, destroyAll } from './controller'
-import { schema } from './model'
-import Payments from './model'
+import Payments, { schema } from './model'
+
 
 const router = new Router()
 const { type, id, version, organisation_id, attributes } = schema.tree
@@ -83,4 +83,5 @@ router.delete('/:id',
 router.delete('/',
   destroyAll)
 
+export { Payments, schema }
 export default router
